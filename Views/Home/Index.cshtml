@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="~/WebLabsV03.UI.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -51,7 +52,7 @@
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form id="logoutForm" class="form-inline" action="#">
-                                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                <button id="logout" type="submit" class="nav-link btn btn-link text-dark" name="logout">Logout</button>
                             </form>
                         </li>
                     </ul>
@@ -60,72 +61,90 @@
             </nav>
         </div><!-- container - конец -->
     </header><!-- header - конец -->
+
     <main class="container">
-        <form>
-  <div class="row mb-3">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3">
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword3">
-    </div>
-  </div>
-  <fieldset class="row mb-3">
-    <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-    <div class="col-sm-10">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-        <label class="form-check-label" for="gridRadios1">
-          First radio
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-        <label class="form-check-label" for="gridRadios2">
-          Second radio
-        </label>
-      </div>
-      <div class="form-check disabled">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-        <label class="form-check-label" for="gridRadios3">
-          Third disabled radio
-        </label>
-      </div>
-    </div>
-  </fieldset>
-  <div class="row mb-3">
-    <div class="col-sm-10 offset-sm-2">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1">
-        <label class="form-check-label" for="gridCheck1">
-          Example checkbox
-        </label>
-      </div>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
+        <ol type="A">
+            <h1>Лабораторная работа 1</h1>
+            <h2>Список</h2>
+            <li>Элемент 0 списка</li>
+            <li>Элемент 1 списка</li>
+            <li>Элемент 2 списка</li>
+            <li>Элемент 3 списка</li>
+            <li>Элемент 4 списка</li>
+        </ol>
+        <hr />
+        <h2>Форма</h2>
+
+        <form method="POST" class="container mt-4">
+            <div class="row mb-3 align-items-center">
+                <div class="col-sm-10 offset-sm-2 d-flex">
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="checkbox1">
+                        <label class="form-check-label" for="gridCheck1">Чек-бокс 1</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck2" name="checkbox2">
+                        <label class="form-check-label" for="gridCheck2">Чек-бокс 2</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+                <div class="col-sm-10 offset-sm-2 d-flex">
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="radioGroup" id="gridRadios1" value="option1" checked>
+                        <label class="form-check-label" for="gridRadios1">Радио 1</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="radioGroup" id="gridRadios2" value="option2">
+                        <label class="form-check-label" for="gridRadios2">Радио 2</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioGroup" id="gridRadios3" value="option3">
+                        <label class="form-check-label" for="gridRadios3">Радио 3</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+                <label for="inputText3" class="col-sm-2 col-form-label">Логин</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="Введите ваш логиин" name="inputLogin">
+                </div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Пароль</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="Введите ваш пароль" name="inutPass">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-info">Войти</button>
+        </form>
+
     </main>
+
+    <footer>
     <footer>
         <div class="container">
             <div class="navbar navbar-dark navbar-expand-md bg-dark">
                 <div class="navbar-nav ms-auto">
                     <a class="nav-item nav-link" href="http://www.facebook.com">
-                        <i class="fa-brands fa-facebook-f fa-2x"></i>
+                        <i class="fa-brands fa-facebook-f fa-2x text-light"></i>
                     </a>
-                <a class="nav-item nav-link" href="http://www.vk.com">
-                     <i class="fa-brands fa-vk fa-2x"></i>
-                </a>
-                <a class="nav-item nav-link" href="http://www.twitter.com">
-                    <i class="fa-brands fa-twitter fa-2x"></i>
-                </a>
+                    <a class="nav-item nav-link" href="http://www.vk.com">
+                        <i class="fa-brands fa-vk fa-2x text-light"></i>
+                    </a>
+                    <a class="nav-item nav-link" href="http://www.twitter.com">
+                        <i class="fa-brands fa-twitter fa-2x text-light"></i>
+                    </a>
+                </div>
             </div>
         </div>
-            </div>
     </footer>
+
+
+
 </body>
 </html>
