@@ -4,7 +4,7 @@
 }
     <main class="container">
         <ol type="A">
-            <h1>Лабораторная работа 1</h1>
+            <h1>@ViewData["TitleLab"]</h1>
             <h2>Список</h2>
             <li>Элемент 0 списка</li>
             <li>Элемент 1 списка</li>
@@ -13,9 +13,18 @@
             <li>Элемент 4 списка</li>
         </ol>
         <hr />
-        <h2>Форма</h2>
 
         <form method="POST" class="container mt-4">
+            
+            <div class="row mb-3 align-items-center">
+        <div class="d-flex align-items-center">
+            <h2 class="me-3 mb-0">Форма</h2>
+            <select id="selectItem" name="selectedItemId" class="form-select" asp-items="ViewBag.Items" style="max-width: 300px;">
+                <option value="">-- Выберите --</option>
+            </select>
+        </div>
+    </div>
+
             <div class="row mb-3 align-items-center">
                 <div class="col-sm-10 offset-sm-2 d-flex">
                     <div class="form-check me-3">
