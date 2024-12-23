@@ -16,42 +16,10 @@
             <!-- Панель навигации -->
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                 <!-- Меню сайта -->
-                <a class="navbar-brand" href="#">WebLabsV03</a>
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link active" asp-controller="Home" asp-action="Index" >Лб 1</a>
-                    <a class="nav-item nav-link"  asp-controller="Product" asp-action="Index">Каталог</a>
-                    <a class="nav-item nav-link" asp-area="Admin" asp-page="/Index">Администрирование</a>
-                </div>
+                <partial name="_MenuPartial"/>
                 <!-- Меню сайта - конец -->
                 <!-- Информация пользователя -->
-                <a asp-controller="Cart" asp-action="Index" class="navbar-text ms-auto">
-                    00,0 руб <i class="fa-solid fa-cart-shopping"></i> (0)
-                </a>
-                <div class="dropdown ms-4 nav-color">
-                    <button class="btn btn-secondary dropdown-toggle"
-                            type="button" id="dropdownMenuButton"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        User@gmail.com
-                        <img src="Images/user.png" width="30"
-                             alt="User" class="rounded nav-color" />
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li>
-                            <span class="dropdown-item-text">
-                                <img src="Images/user.png"
-                                     width="50" alt="User" class="rounded" />
-                                user@gmail.com
-                            </span>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout">
-                                <button id="logout" type="submit" class="nav-link btn btn-link text-dark" name="logout">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
+                <partial name="_UserInfoPartial"/>
                 <!-- Информация пользователя - конец -->
             </nav>
         </div><!-- container - конец -->       
