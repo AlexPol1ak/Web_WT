@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poliak_UI_WT", "Poliak_UI_WT.csproj", "{A642DAEA-26A1-4253-BCDF-BB78BBDA080A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poliak_UI_WT.Domain", "..\Poliak_UI_WT.Domain\Poliak_UI_WT.Domain.csproj", "{90B1E30D-93D4-426D-9F38-8FDA1FABAF69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A642DAEA-26A1-4253-BCDF-BB78BBDA080A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A642DAEA-26A1-4253-BCDF-BB78BBDA080A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A642DAEA-26A1-4253-BCDF-BB78BBDA080A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90B1E30D-93D4-426D-9F38-8FDA1FABAF69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B1E30D-93D4-426D-9F38-8FDA1FABAF69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B1E30D-93D4-426D-9F38-8FDA1FABAF69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B1E30D-93D4-426D-9F38-8FDA1FABAF69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -27,4 +27,8 @@
 		<Folder Include="wwwroot\Images\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Poliak_UI_WT.Domain\Poliak_UI_WT.Domain.csproj" />
+	</ItemGroup>
+
 </Project>
