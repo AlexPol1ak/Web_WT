@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Poliak_UI_WT.Data;
@@ -30,6 +31,7 @@ namespace Poliak_UI_WT.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        public IFormFile Avatar { get; set; }
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
@@ -117,6 +119,16 @@ namespace Poliak_UI_WT.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+                if (Avatar != null)
+                {
+                    user.Avatar = new byte[Avatar.Length];
+                    await Avatar.OpenReadStream().ReadAsync(user.Avatar);
+                    var extProvider = new FileExtensionContentTypeProvider();
+                    var ext = Path.GetExtension(Avatar.FileName);
+                    user.MimeType = extProvider.Mappings[ext];
+                }
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
