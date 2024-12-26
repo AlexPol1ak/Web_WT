@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,12 @@ builder.Services.AddSingleton<IEmailSender, NoOpEmailSender>();
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "/Account/Login");
+    options.Conventions.AddAreaPageRoute("Identity", "/Account/Register", "/Account/Register");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -63,6 +70,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
 
 await DbInit.SetupIdentityAdmin(app);
 

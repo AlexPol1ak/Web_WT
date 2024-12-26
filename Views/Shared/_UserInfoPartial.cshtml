@@ -1,27 +1,48 @@
 ﻿@{
+    var isAuthenticated = User.Identity.IsAuthenticated;
     @await Component.InvokeAsync("Cart")
-                    <div class="dropdown ms-4 nav-color">
-                        <button class="btn btn-secondary dropdown-toggle"
-                                type="button" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                            @User.Claims.FirstOrDefault(c=>c.Type.Equals("Name",StringComparison.OrdinalIgnoreCase))?.Value
-                            <img src="Images/user.png" width="30"
-                                 alt="User" class="rounded nav-color" />
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li>
-                                <span class="dropdown-item-text">
-                                    <img src="Images/user.png"width="50" alt="User" class="rounded" />
-                                    @User.Identity?.Name
-                                </span>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-route-returnurl="/" asp-page="/Account/Logout">
-                                    <button id="logout" type="submit" class="nav-link btn btn-link text-dark" name="logout">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+}
+
+@if (isAuthenticated)
+{
+    <div class="dropdown ms-4 nav-color">
+        <button class="btn btn-secondary dropdown-toggle"
+                type="button" id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+            @User.Claims.FirstOrDefault(c => c.Type.Equals("Name", StringComparison.OrdinalIgnoreCase))?.Value
+            <img src="Images/user.png" width="30"
+                 alt="User" class="rounded nav-color" />
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li>
+                <span class="dropdown-item-text">
+                    <img src="Images/user.png" width="50" alt="User" class="rounded" />
+                    @User.Identity?.Name
+                </span>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-route-returnurl="/" asp-page="/Account/Logout">
+                    <button id="logout" type="submit" class="nav-link btn btn-link text-dark" name="logout">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+
+        <div class="dropdown ms-4 nav-color">           
+            <a class="btn btn-secondary"  asp-controller="Account"  asp-action="Login" 
+                asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" id="LoginButton">
+                Войти
+            </a>
+
+            <a class="btn btn-secondary"  asp-controller="Account" asp-action="Register" 
+                asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" id="RegisterButton">
+                  Регистрация
+            </a>
+        </div>
+       
 }
