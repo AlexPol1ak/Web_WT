@@ -28,7 +28,7 @@ namespace Poliak_UI_WT.Services.PhoneService
                 Name = "Samsung",
                 Model = "S24 Black",
                 Price = 3200,
-                Image = "Image/MemoryPhones/s24black.jpg",
+                Image = "Images\\MemoryPhones\\s24black.jpg",
                 Category = androidCat
             };
 
@@ -38,7 +38,7 @@ namespace Poliak_UI_WT.Services.PhoneService
                 Name = "Samsung",
                 Model = "S24 Gold",
                 Price = 3100,
-                Image = "Image/MemoryPhones/s24gold.jpg",
+                Image = "Images\\MemoryPhones\\s24gold.jpg",
                 Category = androidCat
             };
 
@@ -48,7 +48,7 @@ namespace Poliak_UI_WT.Services.PhoneService
                 Name = "Samsung",
                 Model = "S24 Ultra Black",
                 Price = 4300,
-                Image = "Image/MemoryPhones/s24ultrablack.jpg",
+                Image = "Images\\MemoryPhones\\s24ultrablack.jpg",
                 Category = androidCat
             };
 
@@ -58,7 +58,7 @@ namespace Poliak_UI_WT.Services.PhoneService
                 Name = "Samsung",
                 Model = "S24 Ultra Gold",
                 Price = 3200,
-                Image = "Image/MemoryPhones/s24ultragold.jpg",
+                Image = "Images\\MemoryPhones\\s24ultragold.jpg",
                 Category = androidCat
             };
 
@@ -68,7 +68,7 @@ namespace Poliak_UI_WT.Services.PhoneService
                 Name = "iPhone",
                 Model = "15 pro black",
                 Price = 2900,
-                Image = "Image/MemoryPhones/iphone15problack.jpg",
+                Image = "Images\\MemoryPhones\\iphone15problack.jpg",
                 Category = iosCat
             };
 
@@ -78,7 +78,7 @@ namespace Poliak_UI_WT.Services.PhoneService
                 Name = "iPhone",
                 Model = "15 pro desert titanium",
                 Price = 3100,
-                Image = "Image/MemoryPhones/iphone15prodeserttitan.jpg",
+                Image = "Images\\MemoryPhones\\iphone15prodeserttitan.jpg",
                 Category = iosCat
             };
 
@@ -88,7 +88,7 @@ namespace Poliak_UI_WT.Services.PhoneService
                 Name = "iPhone",
                 Model = "15 pro rose",
                 Price = 3100,
-                Image = "Image/MemoryPhones/iphone15prorose.jpg",
+                Image = "Images\\MemoryPhones\\iphone15prorose.jpg",
                 Category = iosCat
             };
             Phone ip15protitan = new()
@@ -97,7 +97,7 @@ namespace Poliak_UI_WT.Services.PhoneService
                 Name = "iPhone",
                 Model = "15 pro titanium",
                 Price = 3200,
-                Image = "Image/MemoryPhones/iphone15protitan.jpg",
+                Image = "Images\\MemoryPhones\\iphone15protitan.jpg",
                 Category = iosCat
             };
 

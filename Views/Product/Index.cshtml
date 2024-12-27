@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Phone>
+
+@{
+ ViewData["Title"] = "Index";
+ var request = ViewContext.HttpContext.Request;
+ var returnUrl = request.Path + request.QueryString.ToUriComponent();
+}
+
+
+<h2 class="m-3">Смартфоны</h2>
+<div class="card-group">
+
+    @foreach (var item in Model)
+    {
+     <div class="col-4 p-4">
+        <div class="card border-dark m-2">
+            <img class="card-img-top" src="@item.Image"  style="width: 200px; height: 200px;" alt="No image available" />
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">@item.Description</p>
+                    <h5><span class="badge bg-secondary">@item.Price</span></h5>
+                </div><!-- card-body -->
+            <div class="card-footer text-center">
+                <a class="btn btn-outline-primary" asp-action="add" asp-controller="cart" asp-route-id="@item.PhoneId"
+                    asp-route-returnurl="@returnUrl">
+                    Add to cart 
+                <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div><!-- card-footer -->
+        </div><!-- card -->
+     </div>
+     <!-- col -->
+   }
+</div>
