@@ -108,17 +108,6 @@ namespace Poliak_UI_WT.Services.PhoneService
 
         }
 
-        public Task<ResponseData<ListModel<Phone>>> GetProductListAsync
-            (string? categoryNormalizedName, int pageNo = 1)
-        {
-            var model = new ListModel<Phone>() { Items = _phones };
-            var result = new ResponseData<ListModel<Phone>>()
-            {
-                Data = model
-            };
-            return Task.FromResult(result);
-        }
-
         public Task<ResponseData<Phone>> CreatePhoneAsync(Phone phone, IFormFile? formFile)
         {
             throw new NotImplementedException();
@@ -134,14 +123,19 @@ namespace Poliak_UI_WT.Services.PhoneService
             throw new NotImplementedException();
         }
 
-        public Task<ResponseData<ListModel<Phone>>> GetPhoneListAsync(string? categoryNormalizedName, int pageNo = 1)
+        public Task UpdatePhoneAsync(int id, Phone phone, IFormFile? formFile)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdatePhoneAsync(int id, Phone phone, IFormFile? formFile)
+        public Task<ResponseData<ListModel<Phone>>> GetPhoneListAsync(string? categoryNormalizedName, int pageNo = 1)
         {
-            throw new NotImplementedException();
+            var model = new ListModel<Phone>() { Items = _phones };
+            var result = new ResponseData<ListModel<Phone>>()
+            {
+                Data = model
+            };
+            return Task.FromResult(result);
         }
     }
 }
