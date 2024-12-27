@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Poliak_UI_WT.Data;
+using Poliak_UI_WT.Services.CategoryService;
+using Poliak_UI_WT.Services.PhoneService;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +38,8 @@ builder.Services.AddAuthorization(
     });
 
 builder.Services.AddSingleton<IEmailSender, NoOpEmailSender>();
+builder.Services.AddScoped<ICategoryService, MemoryCategoryService>();
+builder.Services.AddScoped<IPhoneService, MemoryPhoneService>(); 
 
 builder.Services.AddControllersWithViews();
 
