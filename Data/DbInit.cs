@@ -3,6 +3,9 @@ using System.Security.Claims;
 
 namespace Poliak_UI_WT.Data
 {
+    /// <summary>
+    /// Класс инициализации тестовых пользователей.
+    /// </summary>
     public class DbInit
     {
         public static async Task SetupIdentityAdmin(WebApplication application)

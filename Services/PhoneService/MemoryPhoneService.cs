@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace Poliak_UI_WT.Services.PhoneService
 {
+    /// <summary>
+    /// Тестовое хранилище телефонов.
+    /// </summary>
     public class MemoryPhoneService : IPhoneService
     {
         List<Phone> _phones;

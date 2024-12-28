@@ -4,6 +4,9 @@ using Poliak_UI_WT.Models;
 
 namespace Poliak_UI_WT.Controllers
 {
+    /// <summary>
+    /// Контроллер домашней страницы.
+    /// </summary>
     public class HomeController : Controller
     {
         public IActionResult Index()

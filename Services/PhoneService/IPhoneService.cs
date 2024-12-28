@@ -3,6 +3,9 @@ using Poliak_UI_WT.Domain.Models;
 
 namespace Poliak_UI_WT.Services.PhoneService
 {
+    /// <summary>
+    /// Интерфейс сервиса телефонов.
+    /// </summary>
     public interface IPhoneService
     {
         public Task<ResponseData<ListModel<Phone>>> GetPhoneListAsync

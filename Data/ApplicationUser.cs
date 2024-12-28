@@ -2,6 +2,9 @@
 
 namespace Poliak_UI_WT.Data
 {
+    /// <summary>
+    /// Класс пользователя.
+    /// </summary>
     public class ApplicationUser: IdentityUser
     {
         public byte[] Avatar { get; set; } 

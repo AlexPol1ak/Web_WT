@@ -6,6 +6,9 @@ using System.Security.Claims;
 
 namespace Poliak_UI_WT.Controllers
 {
+    /// <summary>
+    /// Контроллер получения изображения.
+    /// </summary>
     public class ImageController : Controller
     {
         UserManager<ApplicationUser> _userManager;
@@ -15,6 +18,10 @@ namespace Poliak_UI_WT.Controllers
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// Получить аватар.
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         public async Task<IActionResult> GetAvatar()
         {

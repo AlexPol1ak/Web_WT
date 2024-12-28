@@ -3,6 +3,9 @@ using Poliak_UI_WT.Domain.Models;
 
 namespace Poliak_UI_WT.Services.CategoryService
 {
+    /// <summary>
+    /// Тестовое хранилище категорий.
+    /// </summary>
     public class MemoryCategoryService : ICategoryService
     {
         public Task<ResponseData<List<Category>>> GetAllCategoryAsync()

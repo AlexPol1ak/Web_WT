@@ -5,6 +5,9 @@ using Poliak_UI_WT.Services.PhoneService;
 
 namespace Poliak_UI_WT.Controllers
 {
+    /// <summary>
+    /// Контроллер каталога продукта.
+    /// </summary>
     public class ProductController : Controller
     {
         private readonly ICategoryService _categoryService;
