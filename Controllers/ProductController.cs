@@ -16,12 +16,22 @@ namespace Poliak_UI_WT.Controllers
             _phoneService = phoneService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? category)
         {
-            var productResponse = await _phoneService.GetPhoneListAsync(null);
-            if (!productResponse.Success)
-                return NotFound(productResponse.Error);
-            return View(productResponse.Data.Items);
+            var categoriesResponse = await _categoryService.GetAllCategoryAsync();
+            if(!categoriesResponse.Success)
+                return NotFound(categoriesResponse.Error);      
+
+            ViewData["categories"] = categoriesResponse.Data;
+            var currentCategory = category == null ? "Все" :
+                categoriesResponse.Data.FirstOrDefault(c =>c.NormalizedName == category)?.Name;
+            ViewData["currentCategory"] = currentCategory;
+
+            var phoneResponse = await _phoneService.GetPhoneListAsync(category);
+            if (!phoneResponse.Success)
+                return NotFound(phoneResponse.Error);
+
+            return View(phoneResponse.Data.Items);
         }
     }
 }

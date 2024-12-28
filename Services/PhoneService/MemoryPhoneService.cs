@@ -2,6 +2,7 @@
 using Poliak_UI_WT.Domain.Models;
 using Poliak_UI_WT.Services.CategoryService;
 using SQLitePCL;
+using System.Linq;
 
 namespace Poliak_UI_WT.Services.PhoneService
 {
@@ -130,11 +131,34 @@ namespace Poliak_UI_WT.Services.PhoneService
 
         public Task<ResponseData<ListModel<Phone>>> GetPhoneListAsync(string? categoryNormalizedName, int pageNo = 1)
         {
-            var model = new ListModel<Phone>() { Items = _phones };
-            var result = new ResponseData<ListModel<Phone>>()
+
+            var result = new ResponseData<ListModel<Phone>>();
+            int? categoryId = null;
+            List<Phone> phonesData = new();           
+            if (categoryNormalizedName != null)
             {
-                Data = model
-            };
+                categoryId = _categories.Find(
+                    c => c.NormalizedName == categoryNormalizedName
+                    )?.CategoryId;
+
+                phonesData = _phones.Where(p => p.Category != null && p.Category.CategoryId == categoryId)?.ToList();
+
+            }
+            else
+            {
+                phonesData = _phones;
+            }
+            
+            result.Data =  new ListModel<Phone> {Items = phonesData };
+            Console.WriteLine($"____________________{categoryNormalizedName}");
+            Console.WriteLine($"____________________{phonesData.Count}");
+
+            if (phonesData.Count == 0)
+            {
+                result.Success = false;
+                result.Error = "Нет объектов в выбранной категории";
+            }
+
             return Task.FromResult(result);
         }
     }
