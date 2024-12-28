@@ -19,7 +19,7 @@ namespace Poliak_UI_WT.Controllers
             _phoneService = phoneService;
         }
 
-        public async Task<IActionResult> Index(string? category)
+        public async Task<IActionResult> Index(string? category, int pageNo = 1)
         {
             var categoriesResponse = await _categoryService.GetAllCategoryAsync();
             if(!categoriesResponse.Success)
@@ -30,11 +30,11 @@ namespace Poliak_UI_WT.Controllers
                 categoriesResponse.Data.FirstOrDefault(c =>c.NormalizedName == category)?.Name;
             ViewData["currentCategory"] = currentCategory;
 
-            var phoneResponse = await _phoneService.GetPhoneListAsync(category);
+            var phoneResponse = await _phoneService.GetPhoneListAsync(category, pageNo);
             if (!phoneResponse.Success)
                 return NotFound(phoneResponse.Error);
 
-            return View(phoneResponse.Data.Items);
+            return View(phoneResponse.Data);
         }
     }
 }

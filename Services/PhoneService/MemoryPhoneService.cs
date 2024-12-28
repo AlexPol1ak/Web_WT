@@ -1,8 +1,10 @@
-﻿using Poliak_UI_WT.Domain.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
+using Poliak_UI_WT.Domain.Entities;
 using Poliak_UI_WT.Domain.Models;
 using Poliak_UI_WT.Services.CategoryService;
 using SQLitePCL;
 using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Poliak_UI_WT.Services.PhoneService
 {
@@ -13,11 +15,14 @@ namespace Poliak_UI_WT.Services.PhoneService
     {
         List<Phone> _phones;
         List<Category> _categories;
+        IConfiguration _configuration;
 
-        public MemoryPhoneService(ICategoryService categoryService)
+        public MemoryPhoneService
+            ([FromServices] IConfiguration config, ICategoryService categoryService)
         {
             _categories = categoryService.GetAllCategoryAsync().Result.Data;
             _phones = new List<Phone>();
+            _configuration = config;
             SetupData();
         }
 
@@ -132,12 +137,20 @@ namespace Poliak_UI_WT.Services.PhoneService
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Возвращает  список смартфонов
+        /// </summary>
+        /// <param name="categoryNormalizedName">Имя категории</param>
+        /// <param name="pageNo">Необходимая тсраница</param>
+        /// <returns></returns>
         public Task<ResponseData<ListModel<Phone>>> GetPhoneListAsync(string? categoryNormalizedName, int pageNo = 1)
         {
 
+            int pageSize = _configuration.GetSection("ItemsPerPage").Get<int>();            
             var result = new ResponseData<ListModel<Phone>>();
             int? categoryId = null;
             List<Phone> phonesData = new();           
+
             if (categoryNormalizedName != null)
             {
                 categoryId = _categories.Find(
@@ -151,11 +164,18 @@ namespace Poliak_UI_WT.Services.PhoneService
             {
                 phonesData = _phones;
             }
-            
-            result.Data =  new ListModel<Phone> {Items = phonesData };
-            Console.WriteLine($"____________________{categoryNormalizedName}");
-            Console.WriteLine($"____________________{phonesData.Count}");
 
+            int totalPages = (int)Math.Ceiling(phonesData.Count / (double)pageSize);
+
+            var listData = new ListModel<Phone>()
+            {
+                Items = phonesData.Skip((pageNo - 1) * pageSize).Take(pageSize).ToList(),
+                CurrentPage = pageNo,
+                TotalPages = totalPages,
+            };
+
+            result.Data =  listData;
+                     
             if (phonesData.Count == 0)
             {
                 result.Success = false;
