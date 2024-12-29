@@ -1,7 +1,4 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Poliak_UI_WT.Data;
 using Poliak_UI_WT.Services.CategoryService;
@@ -20,7 +17,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>
     (
-    options => 
+    options =>
     {
         options.SignIn.RequireConfirmedAccount = true;
         options.Password.RequireDigit = false;
@@ -39,7 +36,7 @@ builder.Services.AddAuthorization(
 
 builder.Services.AddSingleton<IEmailSender, NoOpEmailSender>();
 builder.Services.AddScoped<ICategoryService, MemoryCategoryService>();
-builder.Services.AddScoped<IPhoneService, MemoryPhoneService>(); 
+builder.Services.AddScoped<IPhoneService, MemoryPhoneService>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
