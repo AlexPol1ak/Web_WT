@@ -42,6 +42,7 @@ builder.Services.AddScoped<ICategoryService, MemoryCategoryService>();
 builder.Services.AddScoped<IPhoneService, MemoryPhoneService>(); 
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddRazorPages(options =>
 {
