@@ -26,6 +26,7 @@ namespace Poliak_UI_WT.TagHelpers
 
         public int CurrentPage {  get; set; }
         public int TotalPages { get; set; }
+        public string Category {  get; set; }
         public bool Admin {  get; set; } = false;
 
         public int Prev
@@ -51,20 +52,20 @@ namespace Poliak_UI_WT.TagHelpers
 
             #region Кнопка предыдущей страницы
             ul.InnerHtml.AppendHtml(
-            CreateListItem(nameof(Category), Prev, "<span ariahidden=\"true\">&laquo;</span>"));
+            CreateListItem(Category , Prev, "<span ariahidden=\"true\">&laquo;</span>"));
             #endregion
 
             #region Разметка кнопок переключения страниц
             for (var index = 1; index <= TotalPages; index++)
             {
                 ul.InnerHtml.AppendHtml(
-                CreateListItem(nameof(Category), index, String.Empty));
+                CreateListItem(Category, index, String.Empty));
             }
             #endregion
 
             #region Кнопка следующей страницы
             ul.InnerHtml.AppendHtml(
-            CreateListItem(nameof(Category), Next, "<span ariahidden=\"true\">&raquo;</span>"));
+            CreateListItem(Category, Next, "<span ariahidden=\"true\">&raquo;</span>"));
             #endregion 
 
             nav.InnerHtml.AppendHtml(ul);

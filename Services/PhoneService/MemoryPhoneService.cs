@@ -146,6 +146,8 @@ namespace Poliak_UI_WT.Services.PhoneService
         public Task<ResponseData<ListModel<Phone>>> GetPhoneListAsync(string? categoryNormalizedName, int pageNo = 1)
         {
 
+            //Console.WriteLine($"_________________________categoryNormalizedName: {categoryNormalizedName}");
+
             int pageSize = _configuration.GetSection("ItemsPerPage").Get<int>();            
             var result = new ResponseData<ListModel<Phone>>();
             int? categoryId = null;

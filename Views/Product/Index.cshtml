@@ -46,82 +46,16 @@
             <div class="card-group">
             @foreach (var item in Model.Items)
             {
-                        <div class="col-4 p-4">
-                            <div class="card border-dark m-2">
-                                <img class="card-img-top" src="@item.Image" alt="No image available" 
-                                style="width: 200px; height: 200px;" />
-                                <div class="card-body">
-                                    <h5 class="card-title">@item.Name</h5>
-                                    <p class="card-text">@item.Description</p>
-                                    <h5>
-                                        <span class="badge bg-secondary">@item.Price</span>
-                                    </h5>
-                                </div>
-                                <!-- card-body -->
-
-                                <div class="card-footer text-center">
-                                    <a class="btn btn-outline-primary" 
-                                       asp-action="add" 
-                                       asp-controller="cart" 
-                                       asp-route-id="@item.CategoryId" 
-                                       asp-route-returnurl="@returnUrl">
-                                        Add to cart
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                    </a>
-                                </div>
-                                <!-- card-footer -->
-                            </div>
-                            <!-- card -->
-                        </div>
-                        <!-- col -->
+                <partial name="_PhoneItemPartial" model="@item" />                    
             }
             </div>
+            
     }
 
 </div>
-
-<div class="row">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <!-- Previous Page -->
-            <li class="page-item @(prev == Model.CurrentPage ? "disabled" : "")">
-                <a class="page-link"
-                   asp-controller="Product"
-                   asp-action="Index"
-                   asp-route-pageno="@prev"
-                   asp-route-category="@category"
-                   aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-
-            <!-- Page Numbers -->
-            @for (int i = 1; i <= Model.TotalPages; i++)
-            {
-                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-                        <a class="page-link"
-                           asp-controller="Product"
-                           asp-action="Index"
-                           asp-route-pageno="@i"
-                           asp-route-category="@category">
-                        @i
-                        </a>
-                    </li>
-            }
-
-            <!-- Next Page -->
-            <li class="page-item @(next == Model.CurrentPage ? "disabled" : "")">
-                <a class="page-link"
-                   asp-action="Index"
-                   asp-route-pageno="@next"
-                   asp-route-category="@category"
-                   aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div> <!-- Pager -->
-
+<pager current-page="@Model.CurrentPage"
+                   total-pages="@Model.TotalPages" 
+                   category="@category">
+            </pager>
 
 <h2 class="text-warning">@ViewData["Error"]</h2>

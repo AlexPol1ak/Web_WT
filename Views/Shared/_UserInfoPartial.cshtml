@@ -17,7 +17,8 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <li>
                 <span class="dropdown-item-text">
-                        <img src="@Url.Action("GetAvatar","Image")" width="50" alt="User" class="rounded" />
+                        @* <img src="@Url.Action("GetAvatar","Image")" width="50" alt="User" class="rounded" /> *@
+                            <img src="/Image/GetAvatar" width="50" alt="User" class="rounded" />
                     @User.Identity?.Name
                 </span>
             </li>

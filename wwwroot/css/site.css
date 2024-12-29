@@ -3,15 +3,23 @@ header {
 }
 
 footer {
-    position: fixed; 
-    bottom: 0;
-    width: 100%; 
-    background-color: rgba(var(--bs-dark-rgb)); 
-    padding: 3px 0; 
-    z-index: 1000; 
+    position: relative; 
+    width: 100%;
+    background-color: rgba(var(--bs-dark-rgb));
+    padding: 2px 0;
+    z-index: 1000;
+    margin-top: 10px;
+
 }
 
+.container {
+    flex-grow: 1; /* Контент будет занимать все доступное пространство */
+}
 
 .nav-color {
     color: rgba(255, 255, 255, 0.5)
+}
+
+main {
+    padding-bottom: 20px; 
 }

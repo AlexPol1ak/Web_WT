@@ -19,6 +19,8 @@ namespace Poliak_UI_WT.Controllers
             _phoneService = phoneService;
         }
 
+        [Route("Catalog")]
+        [Route("Catalog/{category}")]
         public async Task<IActionResult> Index(string? category, int pageNo = 1)
         {
             var categoriesResponse = await _categoryService.GetAllCategoryAsync();
