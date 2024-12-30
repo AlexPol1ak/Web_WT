@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Poliak_UI_WT.Domain.Entities;
 using Poliak_UI_WT.Services.CategoryService;
 using Poliak_UI_WT.Services.PhoneService;
 
@@ -20,16 +19,16 @@ namespace Poliak_UI_WT.Controllers
         }
 
         [Route("Catalog")]
-        [Route("Catalog/{category}")]
+        //[Route("Catalog/{category}")]
         public async Task<IActionResult> Index(string? category, int pageNo = 1)
         {
             var categoriesResponse = await _categoryService.GetAllCategoryAsync();
-            if(!categoriesResponse.Success)
-                return NotFound(categoriesResponse.Error);      
+            if (!categoriesResponse.Success)
+                return NotFound(categoriesResponse.Error);
 
             ViewData["categories"] = categoriesResponse.Data;
             var currentCategory = category == null ? "Все" :
-                categoriesResponse.Data.FirstOrDefault(c =>c.NormalizedName == category)?.Name;
+                categoriesResponse.Data.FirstOrDefault(c => c.NormalizedName == category)?.Name;
             ViewData["currentCategory"] = currentCategory;
 
             var phoneResponse = await _phoneService.GetPhoneListAsync(category, pageNo);
