@@ -12,15 +12,15 @@ using Poliak_UI_WT.Data;
 namespace Poliak_UI_WT.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241230005241_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241230161843_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.11")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);

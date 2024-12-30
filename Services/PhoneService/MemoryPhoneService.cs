@@ -2,9 +2,6 @@
 using Poliak_UI_WT.Domain.Entities;
 using Poliak_UI_WT.Domain.Models;
 using Poliak_UI_WT.Services.CategoryService;
-using SQLitePCL;
-using System.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Poliak_UI_WT.Services.PhoneService
 {
@@ -110,7 +107,7 @@ namespace Poliak_UI_WT.Services.PhoneService
                 Category = iosCat
             };
 
-            List<Phone>newPhone = new() {s24Black, s24Gold, s24ultrablack, s24ultragold, ip15problack,
+            List<Phone> newPhone = new() {s24Black, s24Gold, s24ultrablack, s24ultragold, ip15problack,
                 ip15prodeserttitan, ip15prorose, ip15protitan
             };
             _phones.AddRange(newPhone);
@@ -148,10 +145,10 @@ namespace Poliak_UI_WT.Services.PhoneService
 
             //Console.WriteLine($"_________________________categoryNormalizedName: {categoryNormalizedName}");
 
-            int pageSize = _configuration.GetSection("ItemsPerPage").Get<int>();            
+            int pageSize = _configuration.GetSection("ItemsPerPage").Get<int>();
             var result = new ResponseData<ListModel<Phone>>();
             int? categoryId = null;
-            List<Phone> phonesData = new();           
+            List<Phone> phonesData = new();
 
             if (categoryNormalizedName != null)
             {
@@ -176,8 +173,8 @@ namespace Poliak_UI_WT.Services.PhoneService
                 TotalPages = totalPages,
             };
 
-            result.Data =  listData;
-                     
+            result.Data = listData;
+
             if (phonesData.Count == 0)
             {
                 result.Success = false;
