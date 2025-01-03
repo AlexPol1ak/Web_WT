@@ -1,7 +1,8 @@
 ﻿using Poliak_UI_WT.Domain.Entities;
 using Poliak_UI_WT.Domain.Models;
+using Poliak_UI_WT.Services.Interfaces;
 
-namespace Poliak_UI_WT.Services.CategoryService
+namespace Poliak_UI_WT.Services.MemoryService
 {
     /// <summary>
     /// Тестовое хранилище категорий.

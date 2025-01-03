@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Poliak_UI_WT.Data;
-using Poliak_UI_WT.Services.ApiService.CategoryApiService;
-using Poliak_UI_WT.Services.ApiServices.CategoryApiService;
-using Poliak_UI_WT.Services.ApiServices.PhoneApiService;
+using Poliak_UI_WT.Services.ApiServices;
+using Poliak_UI_WT.Services.Interfaces;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,11 +38,11 @@ builder.Services.AddSingleton<IEmailSender, NoOpEmailSender>();
 //builder.Services.AddScoped<ICategoryService, MemoryCategoryService>();
 //builder.Services.AddScoped<IPhoneService, MemoryPhoneService>();
 
-builder.Services.AddHttpClient<IPhoneServiceApi, ApiPhoneService>(
-    client => client.BaseAddress = new Uri("https://localhost:7002/api/phones/"));
+builder.Services.AddHttpClient<IPhoneService, ApiPhoneService>(
+    client => client.BaseAddress = new Uri("https://localhost:7002/api/Phones/"));
 
-builder.Services.AddHttpClient<ICategoryServiceApi, ApiCategoryService>(
-    client => client.BaseAddress = new Uri("https://localhost:7002/api/categories/"));
+builder.Services.AddHttpClient<ICategoryService, ApiCategoryService>(
+    client => client.BaseAddress = new Uri("https://localhost:7002/api/Categories/"));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Poliak_UI_WT.Services.CategoryService;
-using Poliak_UI_WT.Services.PhoneService;
+using Poliak_UI_WT.Services.Interfaces;
 
 namespace Poliak_UI_WT.Controllers
 {

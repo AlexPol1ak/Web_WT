@@ -1,10 +1,11 @@
 ﻿using Poliak_UI_WT.Domain.Entities;
 using Poliak_UI_WT.Domain.Models;
-using Poliak_UI_WT.Services.ApiServices.CategoryApiService;
+using Poliak_UI_WT.Services.Interfaces;
 
-namespace Poliak_UI_WT.Services.ApiService.CategoryApiService
+
+namespace Poliak_UI_WT.Services.ApiServices
 {
-    public class ApiCategoryService : ICategoryServiceApi
+    public class ApiCategoryService : ICategoryService
     {
         HttpClient _httpClient;
 
@@ -18,7 +19,11 @@ namespace Poliak_UI_WT.Services.ApiService.CategoryApiService
             var result = await _httpClient.GetAsync(_httpClient.BaseAddress);
             if (result.IsSuccessStatusCode)
             {
-                return await result.Content.ReadFromJsonAsync<ResponseData<List<Category>>>();
+                var s = await result.Content.ReadFromJsonAsync<List<Category>>();
+                ResponseData<List<Category>> rd = new();
+                rd.Success = true;
+                rd.Data = s.ToList();
+                return rd;
             };
             var response = new ResponseData<List<Category>>
             { Success = false, Error = "Ошибка чтения API" };

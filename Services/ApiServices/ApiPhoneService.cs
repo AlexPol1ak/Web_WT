@@ -1,9 +1,10 @@
 ﻿using Poliak_UI_WT.Domain.Entities;
 using Poliak_UI_WT.Domain.Models;
+using Poliak_UI_WT.Services.Interfaces;
 
-namespace Poliak_UI_WT.Services.ApiServices.PhoneApiService
+namespace Poliak_UI_WT.Services.ApiServices
 {
-    public class ApiPhoneService : IPhoneServiceApi
+    public class ApiPhoneService : IPhoneService
     {
 
         private readonly HttpClient _httpClient;
@@ -35,7 +36,7 @@ namespace Poliak_UI_WT.Services.ApiServices.PhoneApiService
             var uri = _httpClient.BaseAddress;
             var queryData = new Dictionary<string, string>();
             queryData.Add("pageNo", pageNo.ToString());
-            if (!String.IsNullOrEmpty(categoryNormalizedName))
+            if (!string.IsNullOrEmpty(categoryNormalizedName))
             {
                 queryData.Add("category", categoryNormalizedName);
             }
@@ -44,6 +45,7 @@ namespace Poliak_UI_WT.Services.ApiServices.PhoneApiService
             var result = await _httpClient.GetAsync(uri + query.Value);
             if (result.IsSuccessStatusCode)
             {
+                Console.WriteLine(await result.Content.ReadAsStringAsync());
                 return await result.Content.ReadFromJsonAsync<ResponseData<ListModel<Phone>>>();
             };
             var response = new ResponseData<ListModel<Phone>>

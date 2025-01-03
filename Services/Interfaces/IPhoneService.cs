@@ -1,9 +1,12 @@
 ﻿using Poliak_UI_WT.Domain.Entities;
 using Poliak_UI_WT.Domain.Models;
 
-namespace Poliak_UI_WT.Services.ApiServices.PhoneApiService
+namespace Poliak_UI_WT.Services.Interfaces
 {
-    public interface IPhoneServiceApi
+    /// <summary>
+    /// Интерфейс сервиса телефонов.
+    /// </summary>
+    public interface IPhoneService
     {
         public Task<ResponseData<ListModel<Phone>>> GetPhoneListAsync
             (string? categoryNormalizedName, int pageNo = 1);
