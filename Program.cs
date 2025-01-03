@@ -8,11 +8,16 @@ using System.Security.Claims;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("MySQLConnectionLocal") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-string mySqlVersion = builder.Configuration.GetValue<string>("MySQLVersionLocal") ?? throw new InvalidOperationException("MySqlVersion not found");
+var connectionString = builder.Configuration.GetConnectionString("MySQLConnectionLocal") ??
+    throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+string mySqlVersion = builder.Configuration.GetValue<string>("MySQLVersionLocal") ??
+    throw new InvalidOperationException("MySqlVersion not found");
+
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>
@@ -51,13 +56,22 @@ builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "/Account/Login");
     options.Conventions.AddAreaPageRoute("Identity", "/Account/Register", "/Account/Register");
+    options.Conventions.AddAreaPageRoute("Admin", "/Phones/Index", "/Phones/Index");
 });
+
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole();
+    logging.SetMinimumLevel(LogLevel.Debug);
+});
+
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
 else
@@ -74,12 +88,15 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
 
 await DbInit.SetupIdentityAdmin(app);
+
 
 app.Run();
