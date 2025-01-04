@@ -1,0 +1,65 @@
+﻿@page
+@model Poliak_UI_WT.Areas.Admin.Pages.Phones.CreateModel
+@{
+    ViewData["Title"] = "Create Phone";
+}
+
+<h1>Create New Phone</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" enctype="multipart/form-data">
+            <!-- Name -->
+            <div class="mb-3">
+                <label asp-for="Phone.Name" class="form-label">Name</label>
+                <input asp-for="Phone.Name" class="form-control" />
+                <span asp-validation-for="Phone.Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Phone.Model" class="form-label">Model</label>
+                <input asp-for="Phone.Model" class="form-control" />
+                <span asp-validation-for="Phone.Name" class="text-danger"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label asp-for="Phone.Description" class="form-label">Description</label>
+                <textarea asp-for="Phone.Description" class="form-control"></textarea>
+                <span asp-validation-for="Phone.Description" class="text-danger"></span>
+            </div>
+
+            <!-- Price -->
+            <div class="mb-3">
+                <label asp-for="Phone.Price" class="form-label">Price</label>
+                <input asp-for="Phone.Price" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="Phone.Price" class="text-danger"></span>
+            </div>
+
+            <!-- Category -->
+            <div class="mb-3">
+                <label asp-for="Phone.CategoryId" class="form-label">Category</label>
+                <select asp-for="Phone.CategoryId" asp-items="@(ViewData["CategoryId"] as IEnumerable<SelectListItem>)" class="form-control"></select>
+                <span asp-validation-for="Phone.CategoryId" class="text-danger"></span>
+            </div>
+
+            <!-- Image -->
+            <div class="mb-3">
+                <label asp-for="Image" class="form-label">Image</label>
+                <input asp-for="Image" class="form-control" />
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                 <input type="submit" value="Create" class="btn btn-primary" />
+           </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

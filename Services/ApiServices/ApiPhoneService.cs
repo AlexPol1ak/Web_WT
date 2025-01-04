@@ -1,6 +1,7 @@
 ﻿using Poliak_UI_WT.Domain.Entities;
 using Poliak_UI_WT.Domain.Models;
 using Poliak_UI_WT.Services.Interfaces;
+using System.Text.Json;
 
 namespace Poliak_UI_WT.Services.ApiServices
 {
@@ -15,10 +16,64 @@ namespace Poliak_UI_WT.Services.ApiServices
             _httpClient = httpClient;
         }
 
-        public Task<ResponseData<Phone>> CreatePhoneAsync(Phone phone, IFormFile? formFile)
+        /// <summary>
+        /// Создать новый телефон.
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <param name="formFile"></param>
+        /// <returns></returns>
+        public async Task<ResponseData<Phone>> CreatePhoneAsync(Phone phone, IFormFile? formFile)
         {
-            throw new NotImplementedException();
+            var serializerOptions = new JsonSerializerOptions()
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            // Подготовить объект, возвращаемый методом
+            var responseData = new ResponseData<Phone>();
+            // Послать запрос к API для сохранения объекта
+            var response = await _httpClient.PostAsJsonAsync(_httpClient.BaseAddress, phone);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                responseData.Success = false;
+                responseData.Error = $"Не удалось создать объект: {response.StatusCode}";
+                return responseData;
+            }
+
+            if (formFile != null)
+            {
+                // получить созданный объект из ответа Api - сервиса
+                var responsePhone = await response.Content.ReadFromJsonAsync<Phone>();
+
+                // создать объект запроса
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri($"{_httpClient.BaseAddress.AbsoluteUri}/{responsePhone.PhoneId}")
+                };
+
+                // Создать контент типа multipart form-data
+                var content = new MultipartFormDataContent();
+                // создать потоковый контент из переданного файла
+                var streamContent = new StreamContent(formFile.OpenReadStream());
+                // добавить потоковый контент в общий контент по именем "image"
+                content.Add(streamContent, "image", formFile.FileName);
+                // поместить контент в запрос
+                request.Content = content;
+                // послать запрос к Api-сервису
+                response = await _httpClient.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    responseData.Success = false;
+                    responseData.Error = $"Не удалось сохранить изображение:{response.StatusCode}";
+                }
+
+            }
+            return responseData;
         }
+
 
         public Task DeletePhoneAsync(int id)
         {
@@ -45,7 +100,7 @@ namespace Poliak_UI_WT.Services.ApiServices
             var result = await _httpClient.GetAsync(uri + query.Value);
             if (result.IsSuccessStatusCode)
             {
-                Console.WriteLine(await result.Content.ReadAsStringAsync());
+                //DebugHelper.ShowError(result.Content.ToString(), "Сообщение");
                 return await result.Content.ReadFromJsonAsync<ResponseData<ListModel<Phone>>>();
             };
             var response = new ResponseData<ListModel<Phone>>

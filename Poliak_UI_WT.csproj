@@ -4,7 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<UserSecretsId>aspnet-Poliak_UI_WT-1c89231e-e09f-4621-abd2-cf98fd64e5a7</UserSecretsId>
+		<UserSecretsId>aspnet-Poliak_UI_WT-1c89231e-e09f-4621-abd2-cf98fd64e5a7</UserSecretsId>		
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -27,6 +27,7 @@
 	  </PackageReference>
 	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
 	  <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
 	</ItemGroup>
 
 </Project>
