@@ -15,7 +15,7 @@ namespace Poliak_UI_WT.Services.Interfaces
 
         public Task UpdatePhoneAsync(int id, Phone phone, IFormFile? formFile);
 
-        public Task DeletePhoneAsync(int id);
+        public Task<bool> DeletePhoneAsync(int id);
 
         public Task<ResponseData<Phone>> CreatePhoneAsync(Phone phone, IFormFile? formFile);
     }

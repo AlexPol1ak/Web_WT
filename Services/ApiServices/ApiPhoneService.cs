@@ -1,5 +1,6 @@
 ﻿using Poliak_UI_WT.Domain.Entities;
 using Poliak_UI_WT.Domain.Models;
+using Poliak_UI_WT.Domain.Utils;
 using Poliak_UI_WT.Services.Interfaces;
 using System.Text.Json;
 
@@ -75,15 +76,72 @@ namespace Poliak_UI_WT.Services.ApiServices
             return responseData;
         }
 
-
-        public Task DeletePhoneAsync(int id)
+        /// <summary>
+        /// Удаляет телефон по id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<bool> DeletePhoneAsync(int id)
         {
-            throw new NotImplementedException();
+
+            Uri requestUri = new Uri($"{_httpClient.BaseAddress}{id}");
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = requestUri
+            };
+
+            var response = await _httpClient.SendAsync(request);
+            if (response.IsSuccessStatusCode) return true;
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                DebugHelper.ShowData($"Failed to delete phone with ID {id}. Response: {errorContent}");
+                return false;
+            }
+
         }
 
-        public Task<ResponseData<Phone>> GetPhoneByIdAsync(int id)
+        /// <summary>
+        /// Получить телефон по Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ResponseData<Phone>> GetPhoneByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            ResponseData<Phone> responseData = new ResponseData<Phone>();
+
+            Uri requestUri = new Uri($"{_httpClient.BaseAddress}{id}");
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = requestUri
+            };
+
+            var response = await _httpClient.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                var responsePhone = await response.Content.ReadFromJsonAsync<Phone>();
+                if (responsePhone != null)
+                {
+                    responseData.Success = true;
+                    responseData.Data = responsePhone;
+                    return responseData;
+                }
+                else
+                {
+                    responseData.Success = false;
+                    responseData.Error = "Не удалось обработать данные.";
+                    DebugHelper.ShowError(responseData.Error);
+                }
+            }
+            else
+            {
+                responseData.Success = false;
+                responseData.Error = "Не удалось получить телефон.";
+                DebugHelper.ShowError(responseData.Error);
+            }
+            return responseData;
         }
 
         public async Task<ResponseData<ListModel<Phone>>> GetPhoneListAsync(

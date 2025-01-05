@@ -119,7 +119,7 @@ namespace Poliak_UI_WT.Services.MemoryService
             throw new NotImplementedException();
         }
 
-        public Task DeletePhoneAsync(int id)
+        public Task<bool> DeletePhoneAsync(int id)
         {
             throw new NotImplementedException();
         }

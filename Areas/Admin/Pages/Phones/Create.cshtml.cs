@@ -7,6 +7,9 @@ using Poliak_UI_WT.Services.Interfaces;
 
 namespace Poliak_UI_WT.Areas.Admin.Pages.Phones
 {
+    /// <summary>
+    /// Страница создания телефона.
+    /// </summary>
     [Authorize(Policy = "admin")]
     public class CreateModel : PageModel
     {
