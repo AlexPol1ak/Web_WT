@@ -47,12 +47,13 @@ namespace Poliak_UI_WT.Services.ApiServices
                 var responsePhone = await response.Content.ReadFromJsonAsync<Phone>();
 
                 // создать объект запроса
+                Uri requestUri = new Uri($"{_httpClient.BaseAddress}{responsePhone.PhoneId}");
+                //DebugHelper.ShowData(requestUri.ToString(), "requestUri");
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri($"{_httpClient.BaseAddress.AbsoluteUri}/{responsePhone.PhoneId}")
+                    RequestUri = requestUri
                 };
-
                 // Создать контент типа multipart form-data
                 var content = new MultipartFormDataContent();
                 // создать потоковый контент из переданного файла
