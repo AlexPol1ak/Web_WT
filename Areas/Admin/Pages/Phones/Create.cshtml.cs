@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -6,6 +7,7 @@ using Poliak_UI_WT.Services.Interfaces;
 
 namespace Poliak_UI_WT.Areas.Admin.Pages.Phones
 {
+    [Authorize(Policy = "admin")]
     public class CreateModel : PageModel
     {
         ICategoryService _categoryService;

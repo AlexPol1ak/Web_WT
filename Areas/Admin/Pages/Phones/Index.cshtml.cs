@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Poliak_UI_WT.Domain.Entities;
 using Poliak_UI_WT.Services.Interfaces;
 
 namespace Poliak_UI_WT.Areas.Admin.Pages.Phones
 {
+    [Authorize(Policy = "admin")]
     public class IndexModel : PageModel
     {
         private readonly IPhoneService _productService;
