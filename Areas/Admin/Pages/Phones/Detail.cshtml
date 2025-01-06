@@ -1,0 +1,36 @@
+﻿@page "{id:int}"
+@model Poliak_UI_WT.Areas.Admin.Pages.Phones.DetailModel
+
+<main class="flex-grow-1">
+    <h2 class="text-center mt-4">Phone Details</h2>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Описание телефона -->
+            <div class="col-md-7">
+                <h3 class="text-primary">@Model.Phone.Name</h3>
+                <p class="mt-3">
+                    <strong>Model:</strong> @Model.Phone.Model<br />
+                    <strong>Price:</strong> @Model.Phone.Price BYN<br />
+                    <strong>Category:</strong> @Model.Phone.Category?.Name<br />
+                    <strong>Description:</strong> @Model.Phone.Description
+                </p>
+                <div class="mt-4">
+                    <a asp-page="./Edit" asp-route-id="@Model.Phone.PhoneId" class="btn btn-warning me-2">
+                        <i class="fa-regular fa-pen-to-square"></i> Edit
+                    </a>
+                    <a asp-page="./Delete" asp-route-id="@Model.Phone.PhoneId" class="btn btn-danger me-2">
+                        <i class="fa-regular fa-trash-can"></i> Delete
+                    </a>
+                    <a asp-page="./Index" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-5 text-center">
+                <img src="@Model.Phone.Image" class="img-fluid rounded shadow" alt="@Model.Phone.Name" style="max-height: 300px; object-fit: contain;">
+            </div>
+        </div>
+    </div>
+</main>
