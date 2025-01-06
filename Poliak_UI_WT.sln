@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poliak_UI_WT.Domain", "..\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poliak_UI_WT.API", "..\Poliak_UI_WT.API\Poliak_UI_WT.API.csproj", "{FA3A8512-109F-4D69-B39A-0AE2E263216D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poliak_UI_WT.Blazor", "..\Poliak_UI_WT.Blazor\Poliak_UI_WT.Blazor.csproj", "{F4D45B1C-C0F1-4B44-B594-4DADC8D81812}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FA3A8512-109F-4D69-B39A-0AE2E263216D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA3A8512-109F-4D69-B39A-0AE2E263216D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA3A8512-109F-4D69-B39A-0AE2E263216D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4D45B1C-C0F1-4B44-B594-4DADC8D81812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D45B1C-C0F1-4B44-B594-4DADC8D81812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D45B1C-C0F1-4B44-B594-4DADC8D81812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D45B1C-C0F1-4B44-B594-4DADC8D81812}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
