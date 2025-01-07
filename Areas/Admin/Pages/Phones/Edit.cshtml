@@ -4,43 +4,43 @@
     ViewData["Title"] = "Edit Phone";
 }
 
-<h2 class="text-center mt-4">Edit Phone</h2>
+<h2 class="text-center mt-4">Редактировать информацию</h2>
 
 <div class="container mt-4">
     <form method="post" enctype="multipart/form-data" class="row g-3">
         <input type="hidden" asp-for="Phone.PhoneId" />
         <div class="col-md-6">
-            <label asp-for="Phone.Name" class="form-label"></label>
+            <label asp-for="Phone.Name" class="form-label">Производитель</label>
             <input asp-for="Phone.Name" class="form-control" />
             <span asp-validation-for="Phone.Name" class="text-danger"></span>
         </div>
 
         <div class="col-md-6">
-            <label asp-for="Phone.Model" class="form-label"></label>
+            <label asp-for="Phone.Model" class="form-label">Модель</label>
             <input asp-for="Phone.Model" class="form-control" />
             <span asp-validation-for="Phone.Model" class="text-danger"></span>
         </div>
 
         <div class="col-md-6">
-            <label asp-for="Phone.Price" class="form-label"></label>
+            <label asp-for="Phone.Price" class="form-label">Цена, BYN</label>
             <input asp-for="Phone.Price" class="form-control" />
             <span asp-validation-for="Phone.Price" class="text-danger"></span>
         </div>
 
         <div class="col-md-6">
-            <label asp-for="Phone.CategoryId" class="form-label">Category</label>
+            <label asp-for="Phone.CategoryId" class="form-label">Категория</label>
             <select asp-for="Phone.CategoryId" asp-items="@(ViewData["CategoryId"] as IEnumerable<SelectListItem>)" class="form-control"></select>
             <span asp-validation-for="Phone.CategoryId" class="text-danger"></span>
         </div>
 
         <div class="col-md-12">
-            <label asp-for="Phone.Description" class="form-label"></label>
+            <label asp-for="Phone.Description" class="form-label">Описание</label>
             <textarea asp-for="Phone.Description" class="form-control"></textarea>
             <span asp-validation-for="Phone.Description" class="text-danger"></span>
         </div>
 
         <div class="col-md-12">
-            <label for="Image" class="form-label">Upload Image</label>
+            <label for="Image" class="form-label">Загрузить изображение</label>
             <input type="file" asp-for="Image" class="form-control" />
         </div>
 
@@ -53,10 +53,10 @@
 
         <div class="col-12 text-end">
             <button type="submit" class="btn btn-primary">
-                <i class="fa-regular fa-floppy-disk"></i> Save
+                <i class="fa-regular fa-floppy-disk"></i> Сохранить
             </button>
             <a asp-page="./Index" class="btn btn-secondary">
-                <i class="fa-solid fa-arrow-left"></i> Cancel
+                <i class="fa-solid fa-arrow-left"></i> Отмена
             </a>
         </div>
     </form>

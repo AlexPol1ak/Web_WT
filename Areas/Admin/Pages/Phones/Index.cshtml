@@ -5,11 +5,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Управление</h1>
 
 <p>
-    <a asp-page="Create" class="btn btn-primary">
-        <i class="fa-solid fa-plus"></i> Create New
+    <a asp-page="./Create" class="btn btn-primary">
+        <i class="fa-solid fa-plus">Добавить телефон</i> 
     </a>
 </p>
 
@@ -35,13 +35,13 @@
                     <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
                     <td>
                         <a asp-page="./Edit" asp-route-id="@item.PhoneId" class="btn btn-success">
-                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                            <i class="fa-solid fa-pen-to-square"></i> Изменить
                         </a>
                         <a asp-page="./Detail" asp-route-id="@item.PhoneId" class="btn btn-info ms-1 me-1">
-                            <i class="fa-solid fa-info"></i> Details
+                            <i class="fa-solid fa-info"></i> Подробно
                         </a>
                         <a asp-page="./Delete" asp-route-id="@item.PhoneId" class="btn btn-danger">
-                            <i class="fa-regular fa-trash-can"></i> Delete
+                            <i class="fa-regular fa-trash-can"></i> Удалить
                         </a>
                     </td>
                 </tr>
